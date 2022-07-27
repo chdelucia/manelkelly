@@ -16,9 +16,9 @@ export class AppComponent implements OnInit  {
     console.log(this.datos);
   }
   check(texto: string){
-    console.log('se ejecuta');
     if(texto === this.datos[0].respuesta){
-      alert('enhorabuena');
+      this.datos[this.indice].success = true;
+      console.log(this.datos);
     }
   }
   next(){

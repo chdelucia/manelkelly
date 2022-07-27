@@ -4,4 +4,5 @@ export interface Boda {
     respuesta: string;
     img?: string;
     inicial: string;
+    success: boolean
   }

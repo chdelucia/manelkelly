@@ -1,16 +1,18 @@
 [
     {
         "id":"0",
-        "pregunta":"Fecha de vuestra pedida",
-        "respuesta":"hola",
+        "pregunta":"¿Fecha de vuestra pedida?",
+        "respuesta":"04/07/2022",
         "img": "./assets/foto0.jpg",
-        "inicial": "P"
+        "inicial": "P",
+        "success": false
     },
     {
         "id":"1",
-        "pregunta":"Fecha de vuestra boda",
-        "respuesta":"adios",
+        "pregunta":"¿Fecha de vuestra boda?",
+        "respuesta":"20/04/2022",
         "img": "./assets/foto01.jfif",
-        "inicial": "P"
+        "inicial": "P",
+        "success": false
     }
 ]

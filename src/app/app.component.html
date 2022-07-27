@@ -6,9 +6,13 @@
          Welcome to {{title}}!
      </h1>
 <section>
-    <span class="circulos" *ngFor="let dato of datos">
-        {{dato.inicial}}
-    </span>
+    <ng-container *ngFor="let dato of datos">
+        <span class="circulos" 
+        [class.success] = "dato.success">
+            {{dato.inicial}}
+        </span>
+    </ng-container>
+
 </section>
 
 <section>
@@ -16,17 +20,20 @@
     <img *ngIf="datos[indice].img" width="400" [src]="datos[indice].img">
 </section>        
      
-<div class="next" (click)="next()">>></div>
-<div *ngIf="indice > 0" class="prev" (click)="prev()"><<</div>
+
 
 </div>
-4 de julio 2022 Casamiento Civil
-20 de abril 2019 Paris
-Ruben
-Viaje a roma 2015
+<section>
+    <input #answer
+    (keyup.enter)="check(answer.value)">
+   
+   <button type="button" (click)="check(answer.value)">Responder</button>
+</section>
 
- <input #answer
- (keyup.enter)="check(answer.value)">
+<section class="botones">
+    <a *ngIf="indice > 0" href="#" class="previous" (click)="prev()">&laquo; Anterior</a>
+    <a href="#" class="next" (click)="next()">Siguiente &raquo;</a>
+</section>
 
-<button type="button" (click)="check(answer.value)">Responder</button>
+
 <router-outlet></router-outlet>
