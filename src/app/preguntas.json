@@ -1,0 +1,16 @@
+[
+    {
+        "id":"0",
+        "pregunta":"Fecha de vuestra pedida",
+        "respuesta":"hola",
+        "img": "./assets/foto0.jpg",
+        "inicial": "P"
+    },
+    {
+        "id":"1",
+        "pregunta":"Fecha de vuestra boda",
+        "respuesta":"adios",
+        "img": "./assets/foto01.jfif",
+        "inicial": "P"
+    }
+]

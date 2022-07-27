@@ -1,0 +1,32 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div style="text-align:center" class="content">
+
+     <h1>
+         Welcome to {{title}}!
+     </h1>
+<section>
+    <span class="circulos" *ngFor="let dato of datos">
+        {{dato.inicial}}
+    </span>
+</section>
+
+<section>
+    <h2>{{datos[indice].pregunta}}</h2>
+    <img *ngIf="datos[indice].img" width="400" [src]="datos[indice].img">
+</section>        
+     
+<div class="next" (click)="next()">>></div>
+<div *ngIf="indice > 0" class="prev" (click)="prev()"><<</div>
+
+</div>
+4 de julio 2022 Casamiento Civil
+20 de abril 2019 Paris
+Ruben
+Viaje a roma 2015
+
+ <input #answer
+ (keyup.enter)="check(answer.value)">
+
+<button type="button" (click)="check(answer.value)">Responder</button>
+<router-outlet></router-outlet>
