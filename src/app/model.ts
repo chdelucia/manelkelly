@@ -1,8 +1,10 @@
 export interface Boda {
-    id: string;
+    id: number;
     pregunta: string;
     respuesta: string;
     img?: string;
     inicial: string;
     success: boolean
+    error?: string;
+    
   }

@@ -1,18 +1,37 @@
 [
     {
-        "id":"0",
+        "id":0,
         "pregunta":"¿Fecha de vuestra pedida?",
         "respuesta":"04/07/2022",
         "img": "./assets/foto0.jpg",
         "inicial": "P",
-        "success": false
+        "success": false,
+        "error": "Andave olvidarte de una fecha tan importante... volvedlo a intentar"
     },
     {
-        "id":"1",
+        "id":1,
         "pregunta":"¿Fecha de vuestra boda?",
         "respuesta":"20/04/2022",
         "img": "./assets/foto01.jfif",
         "inicial": "P",
+        "success": false,
+        "error": "Andave olvidarte de una fecha tan importante... volvedlo a intentar"
+    },
+    {
+        "id":2,
+        "pregunta":"",
+        "respuesta":"cuadrado",
+        "img": "./assets/foto4.jpg",
+        "inicial": "C",
+        "success": false
+    },
+    {
+        "id":3,
+        "pregunta":"¿De que lugar se trata?",
+        "respuesta":"salou",
+        "img": "./assets/foto5.jpg",
+        "inicial": "S",
         "success": false
     }
+
 ]
