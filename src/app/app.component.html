@@ -1,10 +1,7 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div class="premio" (click)="toggleInfo()">{{premioAcumulado}} Ar.</div>
-<div style="text-align:center" class="content" (click)="InfoPanel && toggleInfo()">
+<main style="text-align:center" class="content" (click)="InfoPanel && toggleInfo()">
 
-     <h1>
-        {{title}}!
-     </h1>
+    <h1>{{title}}! </h1>
 <section>
     <ng-container *ngFor="let dato of datos">
         <span class="circulos"
@@ -20,9 +17,7 @@
     <h2>{{datos[indice].pregunta}}</h2>
     <img class="img-qa" *ngIf="datos[indice].img" [src]="datos[indice].img">
 </section>        
-     
 
-</div>
 <section>
     <input #answer
     (keyup.enter)="check(answer.value)">
@@ -35,14 +30,12 @@
     <a *ngIf="indice < datos.length - 1" href="#" class="next" (click)="next()">Siguiente &raquo;</a>
 </section>
 
-
-
 <section class="info" [class.show]="InfoPanel" (click)="toggleInfo()">
     <ng-container *ngFor="let dato of datos; let i = index">
         <div class="premios" [class.selected]="progress === datos.length - i && i != 0">
-            {{datos.length - i}} · {{premioUnidad * (datos.length -i)}} Ar.
+            {{datos.length - i}} · {{calcularPremio(i)}} Ar.
         </div>
     </ng-container>
 </section>
-
+</main>
 <router-outlet></router-outlet>

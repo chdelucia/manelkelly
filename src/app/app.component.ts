@@ -56,7 +56,10 @@ export class AppComponent implements OnInit  {
   }
 
   calcularPremioAcumulado(){
-    this.premioAcumulado = this.premioUnidad * this.progress;
+    this.premioAcumulado = Math.floor(this.premioUnidad * this.progress);
+  }
+  calcularPremio(i: number): number {
+   return Math.floor(this.premioUnidad * (this.datos.length -i));
   }
 
   toggleInfo(){

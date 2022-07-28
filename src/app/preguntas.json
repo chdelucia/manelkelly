@@ -4,7 +4,7 @@
         "pregunta":"¿Fecha de vuestra pedida?",
         "respuesta":"04/07/2022",
         "img": "./assets/foto0.jpg",
-        "inicial": "P",
+        "inicial": "F",
         "success": false,
         "error": "Andave olvidarte de una fecha tan importante... volvedlo a intentar"
     },
@@ -13,7 +13,7 @@
         "pregunta":"¿Fecha de vuestra boda?",
         "respuesta":"20/04/2022",
         "img": "./assets/foto01.jfif",
-        "inicial": "P",
+        "inicial": "F",
         "success": false,
         "error": "Andave olvidarte de una fecha tan importante... volvedlo a intentar"
     },
@@ -32,6 +32,65 @@
         "img": "./assets/foto5.jpg",
         "inicial": "S",
         "success": false
+    },
+    {
+        "id":4,
+        "pregunta":"",
+        "respuesta":"pendejo",
+        "img": "./assets/foto10.jpg",
+        "inicial": "P",
+        "success": false
+    },
+    {
+        "id":5,
+        "pregunta":"¿La última vez que vimos esto quien casi muere?",
+        "respuesta":"juandi",
+        "img": "./assets/image.png",
+        "inicial": "J",
+        "success": false
+    },
+    {
+        "id":6,
+        "pregunta":"¿Te suena la situación? ¿Que modelo es?",
+        "respuesta":"602",
+        "img": "./assets/206.jpeg",
+        "inicial": "6",
+        "success": false,
+        "error": "Buen intento... Fijate en que posición esta el coche"
+    },
+    {
+        "id":7,
+        "pregunta":"¿Como se llama la discoteca?",
+        "respuesta":"eibino",
+        "img": "./assets/eibino.png",
+        "inicial": "E",
+        "success": false,
+        "error": "Buen intento... pero que tipo de foto es?"
+    },
+    {
+        "id":8,
+        "pregunta":"Destino popular para luna de miel, según los expertos y Tripadvisor",
+        "respuesta":"kentycky",
+        "inicial": "K",
+        "success": false,
+        "error": "Buen intento...  el experto es el Manel"
+    },
+    {
+        "id":9,
+        "pregunta":"¿Cuantos goles marcaste esa temporada?",
+        "respuesta":"1995",
+        "img": "./assets/foto12.jpeg",
+        "inicial": "F",
+        "success": false,
+        "error": "Era broma, la pregunta real es: ¿En que año este magnifico equipo prebenjamin se proclamó campeón?"
+    },
+    {
+        "id":10,
+        "pregunta":"Personaje de comic que comparte lugar de nacimiento con Kelly",
+        "respuesta":"Asterix",
+        "inicial": "A",
+        "success": false,
+        "error": "Buen intento... fue creado por René Goscinny"
     }
 
 ]
