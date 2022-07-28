@@ -43,9 +43,9 @@
     },
     {
         "id":5,
-        "pregunta":"¿La última vez que vimos esto quien casi muere?",
+        "pregunta":"",
         "respuesta":"juandi",
-        "img": "./assets/image.png",
+        "img": "./assets/homer.gif",
         "inicial": "J",
         "success": false
     },
@@ -80,17 +80,97 @@
         "pregunta":"¿Cuantos goles marcaste esa temporada?",
         "respuesta":"1995",
         "img": "./assets/foto12.jpeg",
-        "inicial": "F",
+        "inicial": "9",
         "success": false,
         "error": "Era broma, la pregunta real es: ¿En que año este magnifico equipo prebenjamin se proclamó campeón?"
     },
     {
         "id":10,
         "pregunta":"Personaje de comic que comparte lugar de nacimiento con Kelly",
-        "respuesta":"Asterix",
+        "respuesta":"asterix",
         "inicial": "A",
         "success": false,
         "error": "Buen intento... fue creado por René Goscinny"
+    },
+    {
+        "id":11,
+        "pregunta":"",
+        "respuesta":"TALASOMA POWER",
+        "img": "./assets/pez.jpeg",
+        "inicial": "T",
+        "success": false,
+        "error": "Buen intento... lo pescabamos hace tiempo"
+    },
+    {
+        "id":12,
+        "pregunta":"Dia y Mes. ejemplo: 1 Enero",
+        "respuesta":"15 Febrero",
+        "inicial": "1",
+        "success": false,
+        "error": "Buen intento... es una fecha muy importante"
+    },
+    {
+        "id":13,
+        "pregunta":"",
+        "respuesta":"caraculo mental",
+        "img": "./assets/caraculo.jpg",
+        "inicial": "C",
+        "success": false,
+        "error": "Piensa... todo esta en tu mente"
+    },
+    {
+        "id":14,
+        "pregunta":"",
+        "respuesta":"Ovella negra",
+        "img": "./assets/ovella.jpeg",
+        "inicial": "O",
+        "success": false,
+        "error": "Piensa... donde empezo todo?"
+    },
+    {
+        "id":15,
+        "pregunta":"",
+        "respuesta":"Italia87",
+        "img": "./assets/foto3.jpg",
+        "inicial": "I",
+        "success": false,
+        "error": "¿Que tenemos en común todo esa gente?"
+    },
+    {
+        "id":16,
+        "pregunta":"¿Nombre de la perra?",
+        "respuesta":"Samantha",
+        "img": "./assets/foto11.jpeg",
+        "inicial": "U",
+        "success": false,
+        "error": "jajajajjaja has escrito Uma? no nos referiamos a esa sino a la otra..."
+    },
+    {
+        "id":17,
+        "pregunta":"",
+        "respuesta":"agua de valencia",
+        "img": "./assets/agua.jpeg",
+        "inicial": "A",
+        "success": false,
+        "error": "Te gustaba mucho..."
+    },
+    {
+        "id":18,
+        "pregunta":"",
+        "respuesta":"trompamono",
+        "img": "./assets/tromapamono.webp",
+        "inicial": "T",
+        "success": false,
+        "error": "Gingo y bastian..."
+    },
+    {
+        "id":19,
+        "pregunta":"En tú costado lo encontrarás atrapado",
+        "respuesta":"cautivo",
+        "inicial": "C",
+        "success": false,
+        "error": "Museo de louvre.. singular"
     }
 
+    
 ]

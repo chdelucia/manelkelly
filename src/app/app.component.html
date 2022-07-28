@@ -1,4 +1,4 @@
-<div class="premio" (click)="toggleInfo()">{{premioAcumulado}} Ar.</div>
+<div class="premio" (click)="toggleInfo()">{{premioAcumulado}} €</div>
 <main style="text-align:center" class="content" (click)="InfoPanel && toggleInfo()">
 
     <h1>{{title}}! </h1>
@@ -20,7 +20,7 @@
 
 <section>
     <input #answer
-    (keyup.enter)="check(answer.value)">
+    (keyup.enter)="check(answer.value)" [(ngModel)]="inputValue">
    
    <button type="button" (click)="check(answer.value)">Responder</button>
 </section>
@@ -33,7 +33,7 @@
 <section class="info" [class.show]="InfoPanel" (click)="toggleInfo()">
     <ng-container *ngFor="let dato of datos; let i = index">
         <div class="premios" [class.selected]="progress === datos.length - i && i != 0">
-            {{datos.length - i}} · {{calcularPremio(i)}} Ar.
+            {{datos.length - i}} · {{calcularPremio(i)}} €
         </div>
     </ng-container>
 </section>

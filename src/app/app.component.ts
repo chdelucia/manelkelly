@@ -9,10 +9,12 @@ import data from '../app/preguntas.json';
   styleUrls: []
 })
 export class AppComponent implements OnInit  {
-  premioTotal = 1260000;
+  pppremioTotal = 1260000;
+  premioTotal = 300;
   preguntasTotales = data.length;
   premioUnidad = this.premioTotal / this.preguntasTotales;
 
+  inputValue = '';
   title = 'manelkelly';
   datos: Array<Boda> = data;
   indice: number = 0;
@@ -25,14 +27,15 @@ export class AppComponent implements OnInit  {
   }
   check(texto: string){
     let txt = this.datos[this.indice];
-    if(texto.toLowerCase() === txt.respuesta){
+    if(texto.toLowerCase() === txt.respuesta.toLowerCase()){
       this.correctAnswer();
       this.calcularPremioAcumulado();
       this.next();
+      this.clearInput();
     }
     else{
       let msg = txt.error || "Intentalo de nuevo";
-      alert(msg)
+      alert(msg);
     }
   }
   next():void{
@@ -64,6 +67,9 @@ export class AppComponent implements OnInit  {
 
   toggleInfo(){
     this.InfoPanel = !this.InfoPanel
+  }
+  clearInput() {
+    this.inputValue = '';
   }
 
 }
