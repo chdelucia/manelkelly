@@ -1,0 +1,52 @@
+
+<span [routerLink]="'/premio/'">A la pagina de premio</span>
+
+
+<main style="text-align:center" class="content" (click)="InfoPanel && toggleInfo()">
+    
+
+    <h1>{{title}}! </h1>
+<section>
+    <ng-container *ngFor="let dato of datos">
+        <span class="circulos"
+        (click)="move(dato.id)" 
+        [ngClass]="{'success': dato.success, 'selected' : indice === dato.id }">
+            {{dato.inicial}}
+        </span>
+    </ng-container>
+
+</section>
+
+<section>
+    <h2>{{datos[indice].pregunta}}</h2>
+    <img class="img-qa" *ngIf="datos[indice].img" [src]="datos[indice].img">
+</section>        
+
+<section class="responder">
+    <input #answer
+    (keyup.enter)="check(answer.value)" [(ngModel)]="inputValue">
+   
+   <button type="button" (click)="check(answer.value)">Responder</button>
+</section>
+
+<section class="info" [class.show]="InfoPanel">
+    <div class="comodines">
+        <p><small>comodines:</small></p>
+        <div class="comodin">
+            <a  href="tel:665112021"><i>&#9742;</i></a>
+        </div>
+        <div class="comodin">
+            <a  href="tel:600221298"><i>&#9742;</i></a>
+        </div>
+    </div>
+    
+    <ng-container *ngFor="let dato of datos; let i = index">
+        <div class="premios" [class.selected]="progress === datos.length - i && i != 0">
+            {{datos.length - i}} · {{calcularPremio(i)}} €
+        </div>
+    </ng-container>
+</section>
+
+</main>
+
+<div class="premio" (click)="toggleInfo()">{{premioAcumulado}} €</div>
