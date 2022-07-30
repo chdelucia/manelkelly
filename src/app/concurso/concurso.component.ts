@@ -19,7 +19,7 @@ export class ConcursoComponent implements OnInit {
   premioUnidad: number;
 
   inputValue = '';
-  title = 'manelkelly';
+  title = 'Manel & kelly';
   datos: Array<Boda>;
   indice: number = 0;
   progress: number;

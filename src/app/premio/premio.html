@@ -14,3 +14,19 @@ Felicidades has ganado:
 <h2>Código secreto: 7568</h2>
 
 </section>
+
+
+<section *ngIf="extraPrize">
+    <h2>Habeis ganado 2 entradas para un scape room</h2>
+</section>  
+<section *ngIf="bonustrack">
+    <h2>BONUS TRACK: Gana un premio adicional</h2>
+    <img class="img-qa" src="./assets/orbe.png">
+</section>  
+
+<section class="responder" *ngIf="bonustrack">
+    <input #answer
+    (keyup.enter)="check(answer.value)">
+   
+   <button type="button" (click)="check(answer.value)">Responder</button>
+</section>
