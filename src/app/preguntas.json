@@ -1,24 +1,16 @@
 [
     {
         "id":0,
-        "pregunta":"¿Fecha de vuestra pedida? DD/MM/AAAA",
-        "respuesta":"04/07/2022",
-        "img": "./assets/foto0.jpg",
-        "inicial": "F",
+        "pregunta":"",
+        "respuesta":"pendejo",
+        "img": "./assets/foto10.jpg",
+        "inicial": "P",
         "success": false,
-        "error": "Andave olvidarte de una fecha tan importante... volvedlo a intentar"
+        "goldem": true,
+        "goldemInicial": "P"
     },
     {
         "id":1,
-        "pregunta":"¿Fecha de vuestra boda? DD/MM/AAAA",
-        "respuesta":"20/04/2022",
-        "img": "./assets/foto01.jfif",
-        "inicial": "F",
-        "success": false,
-        "error": "Andave olvidarte de una fecha tan importante... volvedlo a intentar"
-    },
-    {
-        "id":2,
         "pregunta":"",
         "respuesta":"cuadrado",
         "img": "./assets/foto4.jpg",
@@ -26,23 +18,16 @@
         "success": false
     },
     {
-        "id":3,
+        "id":2,
         "pregunta":"¿De que lugar se trata?",
         "respuesta":"salou",
         "img": "./assets/foto5.jpg",
         "inicial": "S",
         "success": false
     },
+
     {
-        "id":4,
-        "pregunta":"",
-        "respuesta":"pendejo",
-        "img": "./assets/foto10.jpg",
-        "inicial": "P",
-        "success": false
-    },
-    {
-        "id":5,
+        "id":3,
         "pregunta":"",
         "respuesta":"juandi",
         "img": "./assets/homer.gif",
@@ -50,7 +35,46 @@
         "success": false
     },
     {
+        "id":4,
+        "pregunta":"¿Cuantos goles marcaste esa temporada?",
+        "respuesta":"1995",
+        "img": "./assets/foto12.jpeg",
+        "inicial": "8",
+        "success": false,
+        "error": "Era broma, la pregunta real es: ¿En que año este magnifico equipo prebenjamin se proclamó campeón?",
+        "goldem": true,
+        "goldemInicial": "8"
+    },
+    {
+        "id":5,
+        "pregunta":"Destino popular para luna de miel, según los expertos y Tripadvisor",
+        "respuesta":"kentucky",
+        "inicial": "K",
+        "success": false,
+        "error": "Buen intento...  el experto es el Manel"
+    },
+
+    {
         "id":6,
+        "pregunta":"Personaje de comic que comparte lugar de nacimiento con Kelly",
+        "respuesta":"asterix",
+        "inicial": "A",
+        "success": false,
+        "error": "Buen intento... fue creado por René Goscinny"
+    },
+    {
+        "id":7,
+        "pregunta":"¿Fecha de vuestra boda? DD/MM/AAAA",
+        "respuesta":"20/04/2022",
+        "img": "./assets/foto01.jfif",
+        "inicial": "?",
+        "success": false,
+        "error": "Andave olvidarte de una fecha tan importante... volvedlo a intentar (fecha de ig)",
+        "goldem": true,
+        "goldemInicial": "Q"
+    },
+    {
+        "id":8,
         "pregunta":"¿Te suena la situación? ¿Que modelo es?",
         "respuesta":"602",
         "img": "./assets/206.jpeg",
@@ -59,41 +83,18 @@
         "error": "Buen intento... Fijate en que posición esta el coche"
     },
     {
-        "id":7,
-        "pregunta":"¿Como se llama la discoteca?",
-        "respuesta":"eibino",
-        "img": "./assets/eibino.png",
-        "inicial": "E",
-        "success": false,
-        "error": "Buen intento... pero que tipo de foto es?"
-    },
-    {
-        "id":8,
-        "pregunta":"Destino popular para luna de miel, según los expertos y Tripadvisor",
-        "respuesta":"kentycky",
-        "inicial": "K",
-        "success": false,
-        "error": "Buen intento...  el experto es el Manel"
-    },
-    {
         "id":9,
-        "pregunta":"¿Cuantos goles marcaste esa temporada?",
-        "respuesta":"1995",
-        "img": "./assets/foto12.jpeg",
-        "inicial": "9",
+        "pregunta":"¿Nombre de la perra?",
+        "respuesta":"Samantha",
+        "img": "./assets/foto11.jpeg",
+        "inicial": "U",
         "success": false,
-        "error": "Era broma, la pregunta real es: ¿En que año este magnifico equipo prebenjamin se proclamó campeón?"
+        "error": "jajajajjaja has escrito Uma? no nos referiamos a esa sino a la otra...",
+        "goldem": true,
+        "goldemInicial": "V"
     },
     {
         "id":10,
-        "pregunta":"Personaje de comic que comparte lugar de nacimiento con Kelly",
-        "respuesta":"asterix",
-        "inicial": "A",
-        "success": false,
-        "error": "Buen intento... fue creado por René Goscinny"
-    },
-    {
-        "id":11,
         "pregunta":"",
         "respuesta":"TALASOMA POWER",
         "img": "./assets/pez.jpeg",
@@ -102,15 +103,19 @@
         "error": "Buen intento... lo pescabamos hace tiempo"
     },
     {
-        "id":12,
-        "pregunta":"Dia y Mes. ejemplo: 1 Enero",
-        "respuesta":"15 Febrero",
-        "inicial": "1",
+        "id":11,
+        "pregunta":"¿Fecha de vuestra pedida? DD/MM/AAAA",
+        "respuesta":"04/07/2022",
+        "img": "./assets/foto0.jpg",
+        "inicial": "?",
         "success": false,
-        "error": "Buen intento... es una fecha muy importante"
+        "error": "Andave olvidarte de una fecha tan importante... volvedlo a intentar (fecha de ig)",
+        "goldem": true,
+        "goldemInicial": "Y"
+
     },
     {
-        "id":13,
+        "id":12,
         "pregunta":"",
         "respuesta":"caraculo mental",
         "img": "./assets/caraculo.jpg",
@@ -119,7 +124,7 @@
         "error": "Piensa... todo esta en tu mente"
     },
     {
-        "id":14,
+        "id":13,
         "pregunta":"",
         "respuesta":"Ovella negra",
         "img": "./assets/ovella.jpeg",
@@ -128,7 +133,7 @@
         "error": "Piensa... donde empezo todo?"
     },
     {
-        "id":15,
+        "id":14,
         "pregunta":"",
         "respuesta":"Italia87",
         "img": "./assets/foto3.jpg",
@@ -137,16 +142,17 @@
         "error": "¿Que tenemos en común todo esa gente?"
     },
     {
-        "id":16,
-        "pregunta":"¿Nombre de la perra?",
-        "respuesta":"Samantha",
-        "img": "./assets/foto11.jpeg",
-        "inicial": "U",
+        "id":15,
+        "pregunta":"Dia y Mes. ejemplo: 1 Enero",
+        "respuesta":"15 Febrero",
+        "inicial": "?",
         "success": false,
-        "error": "jajajajjaja has escrito Uma? no nos referiamos a esa sino a la otra..."
+        "error": "Buen intento... es una fecha muy importante",
+        "goldem": true,
+        "goldemInicial": "N"
     },
     {
-        "id":17,
+        "id":16,
         "pregunta":"",
         "respuesta":"agua de valencia",
         "img": "./assets/agua.jpeg",
@@ -155,7 +161,7 @@
         "error": "Te gustaba mucho..."
     },
     {
-        "id":18,
+        "id":17,
         "pregunta":"",
         "respuesta":"trompamono",
         "img": "./assets/tromapamono.webp",
@@ -164,8 +170,19 @@
         "error": "Gingo y bastian..."
     },
     {
+        "id":18,
+        "pregunta":"¿Como se llama la discoteca?",
+        "respuesta":"eibino",
+        "img": "./assets/eibino.png",
+        "inicial": "E",
+        "success": false,
+        "error": "Buen intento... pero que tipo de foto es?",        
+        "goldem": true,
+        "goldemInicial": "E"
+    },
+    {
         "id":19,
-        "pregunta":"En tú costado lo encontrarás atrapado",
+        "pregunta":"En tu costado lo encontrarás atrapado",
         "respuesta":"cautivo",
         "inicial": "C",
         "success": false,

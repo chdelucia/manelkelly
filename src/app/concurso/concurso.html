@@ -5,15 +5,20 @@
 <main style="text-align:center" class="content" (click)="InfoPanel && toggleInfo()">
     
     <h2 class="texto">{{title}}!</h2>
+
 <section>
     <ng-container *ngFor="let dato of datos">
         <span class="circulos"
         (click)="move(dato.id)" 
-        [ngClass]="{'success': dato.success, 'selected' : indice === dato.id }">
-            {{dato.inicial}}
+        [class.goldem]="dato.success && dato.goldem"
+        [ngClass]="{'success': dato.success && !dato.goldem, 'selected' : indice === dato.id }">
+            <ng-container *ngIf="dato.success && dato.goldemInicial; else elseBlock">
+                {{dato.goldemInicial}}
+            </ng-container>
+
+            <ng-template #elseBlock> {{dato.inicial}} </ng-template>
         </span>
     </ng-container>
-
 </section>
 
 <section>

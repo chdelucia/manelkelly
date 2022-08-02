@@ -1,24 +1,12 @@
 <section>
 Has acertado un total de: {{ progress }} preguntas<br><br>
 
-Felicidades has ganado: 
-<h1 class="premiofinal">{{ premioTotal }} Eurazoss</h1>
-<div>
-    <img src="./assets/celebracion2.gif">
-</div>
 
-<p>
-    Mensaje emotivo
-</p>
-
-<h2>Código secreto: 7568</h2>
 
 </section>
 
 
-<section *ngIf="extraPrize">
-    <h2>Habeis ganado 2 entradas para un scape room</h2>
-</section>  
+
 <section *ngIf="bonustrack">
     <h2>BONUS TRACK: Gana un premio adicional</h2>
     <img class="img-qa" src="./assets/orbe.png">
@@ -30,3 +18,26 @@ Felicidades has ganado:
    
    <button type="button" (click)="check(answer.value)">Responder</button>
 </section>
+
+<section *ngIf="extraPrize">
+    <h2>La última letra del código secreto es:</h2>
+    <div class="circulos goldem">R</div>
+
+    <div>Felicidades estas mas cerca de llevarte:</div> 
+    <h1 class="premiofinal">{{ premioTotal }} Eurazoss</h1>
+    <div>
+        <img src="./assets/celebracion2.gif">
+    </div>
+   <h3> Llama al siguiente numero dando el código secreto: </h3>
+   <h2>+34 678 88 17 15</h2>
+
+   <div class="responder">
+        <p>¿Quieres verificar el código antes de llamar?</p>
+        <input #answer
+        (keyup.enter)="checkCode(answer.value)">
+    
+        <button type="button" (click)="checkCode(answer.value)">Verificar</button>
+   </div>
+</section>  
+
+

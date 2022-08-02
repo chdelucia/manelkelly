@@ -12,6 +12,7 @@ export class PremioComponent implements OnInit {
   premioTotal = environment.premioTotal
   bonustrack = true;
   extraPrize = false;
+  secretCode = "P8QVYNER";
   
   constructor(
     private game: GameService
@@ -22,11 +23,19 @@ export class PremioComponent implements OnInit {
   }
 
   check(value:string){
-    if (value.toLocaleLowerCase() === "orbe") {
+    if (value.toLowerCase() === "orbe") {
       this.hideBonusTrackSection();
       this.showExtraPrize();
     } else {
       alert('casiiii... empieza por la O y todos dicen que no existe.')
+    }
+  }
+
+  checkCode(value: string) {
+    if(this.secretCode.toLowerCase() === value.toLowerCase()) {
+      alert('Código correcto');
+    } else {
+      alert('Fijate bien en las bolas doradas');
     }
   }
 

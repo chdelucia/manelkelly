@@ -6,5 +6,7 @@ export interface Boda {
     inicial: string;
     success: boolean
     error?: string;
+    goldem?: boolean;
+    goldemInicial?: string;
     
   }

@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-concurso',
   templateUrl: 'concurso.html',
+  styleUrls: ['concurso.less']
 })
 export class ConcursoComponent implements OnInit {
 
@@ -27,7 +28,6 @@ export class ConcursoComponent implements OnInit {
   InfoPanel = false;
 
   ngOnInit(): void {
-    console.log(this.datos.length);
     this.calcularPremioAcumulado();
   }
   check(texto: string){
@@ -53,6 +53,7 @@ export class ConcursoComponent implements OnInit {
   }
 
   move(i: number):void{
+    console.log(i)
     this.indice = i;
   }
 
