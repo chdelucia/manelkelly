@@ -65,7 +65,7 @@
     {
         "id":7,
         "pregunta":"¿Fecha de vuestra boda? DD/MM/AAAA",
-        "respuesta":"20/04/2022",
+        "respuesta":"04/07/2022",
         "img": "./assets/foto01.jfif",
         "inicial": "?",
         "success": false,
@@ -105,7 +105,7 @@
     {
         "id":11,
         "pregunta":"¿Fecha de vuestra pedida? DD/MM/AAAA",
-        "respuesta":"04/07/2022",
+        "respuesta":"20/04/2019",
         "img": "./assets/foto0.jpg",
         "inicial": "?",
         "success": false,

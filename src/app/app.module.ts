@@ -8,13 +8,15 @@ import { PremioComponent } from './premio/premio.component';
 import { ConcursoComponent } from './concurso/concurso.component';
 import { GameService } from './game.service';
 import { IntroComponent } from './intro/intro.component';
+import { QrComponent } from './qr/qr.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PremioComponent,
     ConcursoComponent,
-    IntroComponent
+    IntroComponent,
+    QrComponent
   ],
   imports: [
     BrowserModule,
