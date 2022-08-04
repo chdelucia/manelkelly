@@ -3,12 +3,12 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-qr',
   templateUrl: 'qr.html',
-  styles: [
-  ]
+  styleUrls: ['qr.less']
 })
 export class QrComponent implements OnInit {
   
   day: string = '';
+  dayNumber: string = '';
   constructor() { }
 
   ngOnInit(): void {
@@ -18,6 +18,8 @@ export class QrComponent implements OnInit {
     date.setDate(last);
 
     this.day = date.toLocaleDateString('ES', { weekday: 'long', month: 'long', day: 'numeric' });
+    this.day = date.toLocaleDateString('ES', { weekday: 'long' });
+    this.dayNumber = date.toLocaleDateString('ES', { day: 'numeric' });
   }
 
 }
