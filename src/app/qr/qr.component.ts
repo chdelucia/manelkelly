@@ -30,7 +30,7 @@ export class QrComponent implements OnInit {
   msgWhatssap() {
     let msg = `https://api.whatsapp.com/send?phone=+34600221298&text=`;
     let mgs2 = "🤣%20Parte%20final%20del%20reto🤣 "
-    let data = `Nos%20vemos%20el%20*${this.selectedDay.weekday}*%20día%20*${this.selectedDay.day}*`
+    let data = `💸💸💸%20Nos%20vemos%20el%20*${this.selectedDay.weekday}*%20día%20*${this.selectedDay.day}*%20a%20las%20*19:30*%20💸💸💸`
     let result = msg + mgs2 + data;
     this.msg = result;
 
