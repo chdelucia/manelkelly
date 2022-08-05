@@ -6,20 +6,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['qr.less']
 })
 export class QrComponent implements OnInit {
-  
-  day: string = '';
-  dayNumber: string = '';
+  tomorrow: Date = new Date();
+  dates: Array<any> = [];
+  selectedDay: any;
+  msg: string = '';
   constructor() { }
 
   ngOnInit(): void {
-    let date: Date = new Date();
-    const first = date.getDate() - date.getDay() + 1;
-    const last = first + 5;
-    date.setDate(last);
+    for (let index = 1; index < 7; index++) {
+      this.tomorrow.setDate(this.tomorrow.getDate()+1);
+      const obj = {
+        'weekday': this.tomorrow.toLocaleDateString('ES', { weekday: 'long' }),
+        'day': this.tomorrow.toLocaleDateString('ES', { day: 'numeric' })
+      }
+      this.dates.push(obj);
+    }
+  }
+  selectDay(date: {weekday: string, day: string}) {
+    this.selectedDay = date;
+    this.msgWhatssap();
+  }
 
-    this.day = date.toLocaleDateString('ES', { weekday: 'long', month: 'long', day: 'numeric' });
-    this.day = date.toLocaleDateString('ES', { weekday: 'long' });
-    this.dayNumber = date.toLocaleDateString('ES', { day: 'numeric' });
+  msgWhatssap() {
+    let msg = `https://api.whatsapp.com/send?phone=+34600221298&text=`;
+    let data = `Nos%20vemos%20el%20${this.selectedDay.weekday}%20dia%20${this.selectedDay.day}`
+    let result = msg + data;
+    this.msg = result;
   }
 
 }

@@ -3,6 +3,17 @@
     border-radius: 10px;
     border: 1px solid #7e7b7b;
     margin: 0 auto;
+    display: inline-block;
+    margin-right: 10px;
+    transition: all .2s ease;
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+    }
+    &.selected {
+        border: 3px solid;
+        transform: scale(1.1);
+    }
 }
 
 .day {

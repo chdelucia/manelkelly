@@ -53,7 +53,6 @@ export class ConcursoComponent implements OnInit {
   }
 
   move(i: number):void{
-    console.log(i)
     this.indice = i;
   }
 

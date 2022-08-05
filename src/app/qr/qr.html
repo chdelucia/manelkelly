@@ -1,8 +1,13 @@
+
+
+
 <section>
-    <h2>Felicidades has resuelto otro reto. El siguiente reto os espera:</h2>
-    <div class="calendar">
-        <div class="day"> {{day}}</div>
-        <div class="number">{{dayNumber}}</div>
+    <h3>Felicidades habeis resuelto otro reto.</h3>
+    <h2>El siguiente reto os espera, eligid dia:</h2>
+    <div class="calendar" [class.selected]="selectedDay == date"
+        *ngFor="let date of dates" (click)="selectDay(date)">
+        <div class="day"> {{date.weekday}}</div>
+        <div class="number">{{date.day}}</div>
         <div class="hour">19:30</div>
     </div>
 
@@ -10,7 +15,13 @@
     41.4368671<br>
     2.2396368
     <br><br>
+
+    <a [href]="msg" target="_blank">
+        Confirmar dia y hora
+    </a>
     <img src="./assets/dinero.gif">
+
+
 
 </section>
 
