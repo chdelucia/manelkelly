@@ -13,7 +13,7 @@ export class QrComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    for (let index = 1; index < 7; index++) {
+    for (let index = 0; index < 8; index++) {
       this.tomorrow.setDate(this.tomorrow.getDate()+1);
       const obj = {
         'weekday': this.tomorrow.toLocaleDateString('ES', { weekday: 'long' }),
