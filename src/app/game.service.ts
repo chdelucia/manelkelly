@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { mergeScan } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+
 import { environment } from 'src/environments/environment';
 import data from '../app/preguntas.json'; 
 import { Boda } from './model';
@@ -9,6 +10,15 @@ import { Boda } from './model';
   providedIn: 'root'
 })
 export class GameService {
+  private messageSource = new BehaviorSubject(data[0]);
+  currentMessage = this.messageSource.asObservable();
+
+  private paginatorIdSource = new BehaviorSubject(0);
+  currentPaginatorId = this.paginatorIdSource.asObservable();
+
+  private correctAnswerSource = new BehaviorSubject(0);
+  currentProgress = this.correctAnswerSource.asObservable();
+  
   private correctAnswers = 0;
   private totalQuestions = data.length;
   private totalPrize = environment.premioTotal
@@ -17,19 +27,27 @@ export class GameService {
   private currentQuestionID = 0;
 
   constructor(private router: Router) { }
+
+  changeData(id: number = 0) {
+    this.messageSource.next(data[id]);
+  }
+
+  changePaginatorID(id: number) {
+    this.paginatorIdSource.next(id);
+  }
+
+  changeProgress(){
+    this.correctAnswerSource.next(this.correctAnswers);
+  }
   
   setQuestionID(id:number) {
-    console.log(id)
     this.currentQuestionID = id;
-  }
-  getQuestionID():number {
-    return this.currentQuestionID;
+    this.changeData(id);
   }
 
   getCurrentQuestionObj():Boda {
     return data[this.currentQuestionID];
   }
-
 
   getProgress():number {
     return this.correctAnswers;
@@ -38,6 +56,7 @@ export class GameService {
   updateProgress() {
     this.correctAnswers++;
     this.currentQuestionID++;
+    this.changeProgress();
     if (this.correctAnswers === this.totalQuestions) { 
       this.moveToCongratsPage() 
     }
@@ -83,6 +102,8 @@ export class GameService {
       this.setQuestionAsResolved(currentQuestionObj);
       this.updateProgress();
       this.updateJackpot();
+      this.changeData(this.currentQuestionID);
+      this.changePaginatorID(this.currentQuestionID);
       
       response = true;
     } 

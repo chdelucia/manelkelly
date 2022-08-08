@@ -1,9 +1,8 @@
 
 <main style="text-align:center" class="content" (click)="showInfoPanel && toggleInfo()">
-    
     <h2 class="texto">{{title}}!</h2>
 
-    <app-pagination  [indice]="indice" (itemID)="move($event)"></app-pagination>
+    <app-pagination></app-pagination>
 
 
     <section>
@@ -19,7 +18,7 @@
     </section>
 
 
-    <app-info-panel [progress]="progress" [InfoPanel]="showInfoPanel"></app-info-panel>
+    <app-info-panel [InfoPanel]="showInfoPanel"></app-info-panel>
 
 </main>
 

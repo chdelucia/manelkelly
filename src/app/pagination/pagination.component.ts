@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { GameService } from '../game.service';
 import { Boda } from '../model';
 
@@ -7,23 +8,26 @@ import { Boda } from '../model';
   templateUrl: 'pagination.html',
   styleUrls: ['pagination.less']
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent implements OnInit, OnDestroy {
   datos: Array<Boda> = [];
-  @Input() indice: number = 0;
-  @Output() itemID = new EventEmitter<number>();
+  indice: number = 0;
+  subscription: Subscription | undefined;
 
-  
   constructor(private game: GameService) {
     this.datos = this.game.getQuestions();
    }
 
   changeQuestion(id: number) {
     this.game.setQuestionID(id);
-    this.itemID.emit(id);
-    
+    this.indice = id;
   }
 
   ngOnInit(): void {
+    this.subscription = this.game.currentPaginatorId.subscribe(id => this.indice = id);
+  }
+
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
   }
 
 }

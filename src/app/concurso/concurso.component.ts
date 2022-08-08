@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Boda } from '../model';
 import { GameService } from '../game.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-concurso',
   templateUrl: 'concurso.html',
   styleUrls: ['concurso.less']
 })
-export class ConcursoComponent implements OnInit {
+export class ConcursoComponent implements OnInit, OnDestroy {
 
   inputValue = '';
   title = 'Manel & kelly';
@@ -16,16 +17,14 @@ export class ConcursoComponent implements OnInit {
 
   constructor(private game: GameService) { 
     this.data = this.game.getCurrentQuestionObj();
-    this.progress = this.game.getProgress();
   }
 
-  indice: number = 0;
-  progress: number;
   premioAcumulado: number = 0;
+  subscription: Subscription | undefined;
   
 
   ngOnInit():void {
-    this.game.updateJackpot();
+    this.subscription = this.game.currentMessage.subscribe(message => this.data = message);
   }
 
   check(userAnswer: string):void {
@@ -39,40 +38,21 @@ export class ConcursoComponent implements OnInit {
     alert(msg)
   }
 
-  next():void {
-    if(this.indice < this.game.getTotalQuestion() - 1){
-      this.indice++;
-      this.data = this.getCurrentQuestionObj();
-    }
-  }
-
-  prev():void{
-    this.indice--;
-  }
-
-  move(id: number):void {
-    this.indice = id;
-    this.data = this.getCurrentQuestionObj();
-    
-  }
-
   correctAnswer():void {
     this.premioAcumulado = this.game.getJackpot()
-    this.progress = this.game.getProgress();
     this.clearInput();
-    this.next();
   }
 
   toggleInfo():void {
     this.showInfoPanel = !this.showInfoPanel
   }
+
   clearInput():void {
     this.inputValue = '';
   }
 
-  //TODO change to emitbehivour
-  getCurrentQuestionObj(): Boda {
-    return this.game.getCurrentQuestionObj();
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
   }
 
 }

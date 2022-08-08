@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
-import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-premio',
@@ -9,14 +8,16 @@ import { environment } from '../../environments/environment';
 })
 export class PremioComponent implements OnInit {
   progress = 0
-  premioTotal = environment.premioTotal
+  premioTotal: number;
   bonustrack = true;
   extraPrize = false;
   secretCode = "P8QVYNER";
   
   constructor(
     private game: GameService
-  ) {}
+  ) {
+    this.premioTotal = this.game.getTotalPrize();
+  }
 
   ngOnInit(): void {
     this.progress = this.game.getProgress()
