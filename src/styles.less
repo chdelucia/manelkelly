@@ -11,25 +11,6 @@ main {
     min-height: 100vh;
 }
 
-
-.circulos {
-    border-radius: 50px;
-    padding: 10px;
-    background-color: #9b9999;
-    margin-right: 4px;
-    cursor: pointer;
-    margin-bottom: 5px;
-    display: inline-grid;
-    width: 18px;
-    &.success{
-        background-color: rgb(41, 170, 41);
-    }
-    &.selected {
-        border:3px solid #2d0e53;
-    }
-}
-
-
 section{
     text-align: center;
 }
@@ -81,57 +62,7 @@ a {
     box-shadow: -1px -1px 5px #fff, 2px 2px 20px #1f1e1e, inset 0px 0px 0px #fff, inset 0px 0px 0px #1f1e1e;
     transition: all 300ms ease;
 }
-.comodines{
-    position:absolute;
-    top:-5px;
-    right: 0;
-    p {
-        margin: 5px
-    }
-}
-.comodin{
-    width: 28px;
-    cursor: pointer;
-    margin: 0 20px 10px;
-    padding: 12px;
-    border: 2px solid white;
-    border-radius: 50px;
-    font-size: 20px;
-    background: #2d0e53;
-    box-shadow: -1px -1px 5px #fff, 2px 2px 20px #1f1e1e, inset 0px 0px 0px #fff, inset 0px 0px 0px #1f1e1e;
-    a{
-        padding: 0;
-        color: #fff;
-        font-size: 23px;
-    }
-}
 
-.premios{
-    padding: 5px 50px;
-    &.selected{
-        background-color: yellowgreen;
-        text-shadow: 1px 1px 3px black;
-    }
-}
-
-.info{
-    min-height: 100vh;
-    padding-top: 15px;
-    position: absolute;
-    display: inline-block;
-    height: 100%;
-    top:0;
-    right: -350px;
-    width: 270px;
-    background-color: #2d0e53;
-    transition: all 1s ease;
-    text-align: left;
-    color: rgb(240, 205, 140);
-    font-size: 20px;
-    &.show{
-        right: 0;
-    }
-}
 
 input, button {
     margin-top: 5px;
@@ -139,12 +70,56 @@ input, button {
     margin-bottom: 2em;
 }
 
-.texto { 
-    color: #2d0e53;
-    text-shadow: 1px 1px solid;
-    font-family: "Montez", cursive;
-    font-weight: 400;
-    margin: 0 0 30px 0;
-    text-shadow: 2px 2px 8px #2d0e53;
-    font-size: 38px;
+
+.circulos {
+  border-radius: 50px;
+  padding: 10px;
+  background-color: #9b9999;
+  margin-right: 4px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  display: inline-grid;
+  width: 18px;
+  &.success{
+      background-color: rgb(41, 170, 41);
+  }
+  &.selected {
+      border:3px solid #2d0e53;
+  }
+}
+
+.goldem { 
+  z-index:0;
+  position: relative;
+  overflow: hidden;
+  animation: shine 2s ease-in-out infinite;
+  animation-fill-mode: forwards;
+  background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+                  radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%); 
+  }
+  
+  
+    /* Shine */
+    .goldem:after {
+        content:'';
+        overflow: hidden;
+        top:0;
+        width:100%;
+        height:40px;
+        position: absolute;
+        transform:translateX(100%);
+        z-index:1;
+        animation: slide 3s infinite 3s;
+        background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%);
+    }
+    
+    /* animation */
+    
+    @keyframes slide {
+        0% {transform:translateX(-100%);}
+        100% {transform:translateX(100%);}
+    }
+
+button{
+  cursor: pointer;
 }

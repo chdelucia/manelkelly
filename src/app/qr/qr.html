@@ -2,8 +2,8 @@
 
 
 <section>
-    <h3>Felicidades habeis resuelto otro reto.</h3>
-    <h2>El siguiente reto os espera, eligid dia:</h2>
+    <h3>Felicidades habeis resuelto el reto final.</h3>
+    <h2>Eligid dia para recoger la recompensa:</h2>
     <div class="calendar" [class.selected]="selectedDay == date"
         *ngFor="let date of dates" (click)="selectDay(date)">
         <div class="day"> {{date.weekday}}</div>

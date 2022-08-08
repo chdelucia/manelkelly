@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Boda } from '../model';
 import { GameService } from '../game.service';
-import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-concurso',
@@ -10,72 +9,70 @@ import { environment } from '../../environments/environment';
 })
 export class ConcursoComponent implements OnInit {
 
-  constructor(private game: GameService) { 
-    this.datos = this.game.getQuestions();
-    this.preguntasTotales = this.datos.length;
-    this.premioUnidad = environment.premioTotal / this.preguntasTotales;
-    this.progress = this.game.getProgress();
-  }
-  preguntasTotales: number;
-  premioUnidad: number;
-
   inputValue = '';
   title = 'Manel & kelly';
-  datos: Array<Boda>;
+  data: Boda;
+  showInfoPanel = false;
+
+  constructor(private game: GameService) { 
+    this.data = this.game.getCurrentQuestionObj();
+    this.progress = this.game.getProgress();
+  }
+
   indice: number = 0;
   progress: number;
   premioAcumulado: number = 0;
-  InfoPanel = false;
+  
 
-  ngOnInit(): void {
-    this.calcularPremioAcumulado();
+  ngOnInit():void {
+    this.game.updateJackpot();
   }
-  check(texto: string){
-    let txt = this.datos[this.indice];
-    if(texto.toLowerCase() === txt.respuesta.toLowerCase()){
+
+  check(userAnswer: string):void {
+    let msg = this.data.error || "Intentalo de nuevo";
+    
+    if(this.game.checkAnswer(userAnswer) ) {
       this.correctAnswer();
-      this.calcularPremioAcumulado();
-      this.next();
-      this.clearInput();
-    }
-    else{
-      let msg = txt.error || "Intentalo de nuevo";
-      alert(msg);
-    }
+      msg = 'Respuesta correcta!'; 
+    } 
+
+    alert(msg)
   }
-  next():void{
-    if(this.indice < this.datos.length - 1){
+
+  next():void {
+    if(this.indice < this.game.getTotalQuestion() - 1){
       this.indice++;
+      this.data = this.getCurrentQuestionObj();
     }
   }
+
   prev():void{
     this.indice--;
   }
 
-  move(i: number):void{
-    this.indice = i;
+  move(id: number):void {
+    this.indice = id;
+    this.data = this.getCurrentQuestionObj();
+    
   }
 
-  correctAnswer():void{
-    let txt = this.datos[this.indice];
-    txt.success = true;
-    alert('Respuesta correcta!');
-    this.game.updateProgress()
+  correctAnswer():void {
+    this.premioAcumulado = this.game.getJackpot()
     this.progress = this.game.getProgress();
+    this.clearInput();
+    this.next();
   }
 
-  calcularPremioAcumulado(){
-    this.premioAcumulado = Math.floor(this.premioUnidad * this.progress);
+  toggleInfo():void {
+    this.showInfoPanel = !this.showInfoPanel
   }
-  calcularPremio(i: number): number {
-   return Math.floor(this.premioUnidad * (this.datos.length -i));
-  }
-
-  toggleInfo(){
-    this.InfoPanel = !this.InfoPanel
-  }
-  clearInput() {
+  clearInput():void {
     this.inputValue = '';
+  }
+
+  //TODO change to emitbehivour
+  getCurrentQuestionObj(): Boda {
+    return this.game.getCurrentQuestionObj();
   }
 
 }

@@ -1,0 +1,51 @@
+.info{
+    min-height: 100vh;
+    padding-top: 15px;
+    position: absolute;
+    display: inline-block;
+    height: 100%;
+    top:0;
+    right: -350px;
+    width: 270px;
+    background-color: #2d0e53;
+    transition: all 1s ease;
+    text-align: left;
+    color: rgb(240, 205, 140);
+    font-size: 20px;
+    &.show{
+        right: 0;
+    }
+}
+
+.comodines{
+    position:absolute;
+    top:-5px;
+    right: 0;
+    p {
+        margin: 5px
+    }
+}
+.comodin{
+    width: 28px;
+    cursor: pointer;
+    margin: 0 20px 10px;
+    padding: 12px;
+    border: 2px solid white;
+    border-radius: 50px;
+    font-size: 20px;
+    background: #2d0e53;
+    box-shadow: -1px -1px 5px #fff, 2px 2px 20px #1f1e1e, inset 0px 0px 0px #fff, inset 0px 0px 0px #1f1e1e;
+    a{
+        padding: 0;
+        color: #fff;
+        font-size: 23px;
+    }
+}
+
+.premios{
+    padding: 5px 50px;
+    &.selected{
+        background-color: yellowgreen;
+        text-shadow: 1px 1px 3px black;
+    }
+}

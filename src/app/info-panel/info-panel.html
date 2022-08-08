@@ -1,0 +1,17 @@
+<section class="info" [class.show]="InfoPanel">
+    <div class="comodines">
+        <p><small>comodines:</small></p>
+        <div class="comodin">
+            <a  href="tel:665112021"><i>&#9742;</i></a>
+        </div>
+        <div class="comodin">
+            <a  href="tel:600221298"><i>&#9742;</i></a>
+        </div>
+    </div>
+    
+    <ng-container *ngFor="let dato of datos; let i = index">
+        <div class="premios" [class.selected]="progress === datos.length - i && i != 0">
+            {{datos.length - i}} · {{calcularPremio(i)}} €
+        </div>
+    </ng-container>
+</section>

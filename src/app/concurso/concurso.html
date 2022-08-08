@@ -1,52 +1,25 @@
 
-<main style="text-align:center" class="content" (click)="InfoPanel && toggleInfo()">
+<main style="text-align:center" class="content" (click)="showInfoPanel && toggleInfo()">
     
     <h2 class="texto">{{title}}!</h2>
 
-<section>
-    <ng-container *ngFor="let dato of datos">
-        <span class="circulos"
-        (click)="move(dato.id)" 
-        [class.goldem]="dato.success && dato.goldem"
-        [ngClass]="{'success': dato.success && !dato.goldem, 'selected' : indice === dato.id }">
-            <ng-container *ngIf="dato.success && dato.goldemInicial; else elseBlock">
-                {{dato.goldemInicial}}
-            </ng-container>
+    <app-pagination  [indice]="indice" (itemID)="move($event)"></app-pagination>
 
-            <ng-template #elseBlock> {{dato.inicial}} </ng-template>
-        </span>
-    </ng-container>
-</section>
 
-<section>
-    <h2>{{datos[indice].pregunta}}</h2>
-    <img class="img-qa" *ngIf="datos[indice].img" [src]="datos[indice].img">
-</section>        
+    <section>
+        <h2>{{data.pregunta}}</h2>
+        <img class="img-qa" *ngIf="data.img" [src]="data.img">
+    </section>        
 
-<section class="responder">
-    <input #answer
-    (keyup.enter)="check(answer.value)" [(ngModel)]="inputValue">
-   
-   <button type="button" (click)="check(answer.value)">Responder</button>
-</section>
-
-<section class="info" [class.show]="InfoPanel">
-    <div class="comodines">
-        <p><small>comodines:</small></p>
-        <div class="comodin">
-            <a  href="tel:665112021"><i>&#9742;</i></a>
-        </div>
-        <div class="comodin">
-            <a  href="tel:600221298"><i>&#9742;</i></a>
-        </div>
-    </div>
+    <section class="responder" *ngIf="!data.success">
+        <input #answer
+        (keyup.enter)="check(answer.value)" [(ngModel)]="inputValue">
     
-    <ng-container *ngFor="let dato of datos; let i = index">
-        <div class="premios" [class.selected]="progress === datos.length - i && i != 0">
-            {{datos.length - i}} · {{calcularPremio(i)}} €
-        </div>
-    </ng-container>
-</section>
+        <button type="button" (click)="check(answer.value)">Responder</button>
+    </section>
+
+
+    <app-info-panel [progress]="progress" [InfoPanel]="showInfoPanel"></app-info-panel>
 
 </main>
 

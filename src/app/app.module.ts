@@ -9,6 +9,8 @@ import { ConcursoComponent } from './concurso/concurso.component';
 import { GameService } from './game.service';
 import { IntroComponent } from './intro/intro.component';
 import { QrComponent } from './qr/qr.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { InfoPanelComponent } from './info-panel/info-panel.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { QrComponent } from './qr/qr.component';
     PremioComponent,
     ConcursoComponent,
     IntroComponent,
-    QrComponent
+    QrComponent,
+    PaginationComponent,
+    InfoPanelComponent
   ],
   imports: [
     BrowserModule,
