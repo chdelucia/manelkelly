@@ -14,6 +14,7 @@ export class PaginationComponent implements OnInit, OnDestroy {
   subscription: Subscription | undefined;
 
   constructor(private game: GameService) {
+    this.game.loadDataFromLocalStorage();
     this.datos = this.game.getQuestions();
    }
 

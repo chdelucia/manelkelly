@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import data from '../app/preguntas.json'; 
@@ -21,8 +21,8 @@ export class GameService {
   
   private correctAnswers = 0;
   private totalQuestions = data.length;
-  private totalPrize = environment.premioTotal
-  private unitPrize = environment.premioTotal / this.totalQuestions;
+  private totalPrize = environment.totalPrize
+  private unitPrize = environment.totalPrize / this.totalQuestions;
   private jackpot = 0;
   private currentQuestionID = 0;
 
@@ -36,10 +36,36 @@ export class GameService {
     this.paginatorIdSource.next(id);
   }
 
-  changeProgress(){
+  changeProgress() {
     this.correctAnswerSource.next(this.correctAnswers);
   }
   
+  loadDataFromLocalStorage():void {
+    const ans = localStorage.getItem(environment.LocalStorageAnswersName);
+    let answers = ans?.split(',') || [];
+    const isNotLoaded = answers.length !== this.correctAnswers;
+
+    if( answers && isNotLoaded) {
+
+      data.forEach( question => {
+        if( answers.includes(question.id.toString()) ) {
+          question.success = true;
+          this.correctAnswers++;
+        }
+      });
+
+      this.updateJackpot();
+    }
+  }
+
+  saveProgressIntoLocalStorage():void {
+    let ans = localStorage.getItem(environment.LocalStorageAnswersName);
+    ans = ans ? ans + ',' + this.currentQuestionID : this.currentQuestionID.toString();
+
+    localStorage.setItem(environment.LocalStorageAnswersName, ans );
+  }
+
+
   setQuestionID(id:number) {
     this.currentQuestionID = id;
     this.changeData(id);
@@ -53,10 +79,11 @@ export class GameService {
     return this.correctAnswers;
   }
 
-  updateProgress() {
+  updateProgress():void {
+    this.saveProgressIntoLocalStorage();
     this.correctAnswers++;
     this.currentQuestionID++;
-    this.changeProgress();
+
     if (this.correctAnswers === this.totalQuestions) { 
       this.moveToCongratsPage() 
     }
@@ -83,10 +110,11 @@ export class GameService {
   }
 
   updateJackpot():void {
-    if(this.jackpot === environment.premioTotal){
+    if(this.jackpot === environment.totalPrize){
       return
     }
     this.jackpot = Math.floor(this.unitPrize * this.correctAnswers);
+    this.changeProgress();
   }
 
   getJackpot():number {

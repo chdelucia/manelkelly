@@ -8,7 +8,7 @@ import { GameService } from '../game.service';
 })
 export class PremioComponent implements OnInit {
   progress = 0
-  premioTotal: number;
+  totalPrize: number;
   bonustrack = true;
   extraPrize = false;
   secretCode = "P8QVYNER";
@@ -16,7 +16,7 @@ export class PremioComponent implements OnInit {
   constructor(
     private game: GameService
   ) {
-    this.premioTotal = this.game.getTotalPrize();
+    this.totalPrize = this.game.getTotalPrize();
   }
 
   ngOnInit(): void {

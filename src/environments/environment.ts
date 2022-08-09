@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  premioTotal: 300
+  totalPrize: 300,
+  LocalStorageAnswersName: 'answered'
 };
 
 /*

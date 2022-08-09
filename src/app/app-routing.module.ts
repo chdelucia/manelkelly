@@ -6,6 +6,7 @@ import { IntroComponent } from './intro/intro.component';
 import { PremioComponent } from './premio/premio.component';
 import { QrComponent } from './qr/qr.component';
 
+//TODO lazy load components: Premio, Concurso, QR
 const routes: Routes = [
   { path: '',   component: IntroComponent, pathMatch: 'full' },
   { path: 'premio', component: PremioComponent },

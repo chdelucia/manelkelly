@@ -25,6 +25,7 @@ export class ConcursoComponent implements OnInit, OnDestroy {
 
   ngOnInit():void {
     this.subscription = this.game.currentMessage.subscribe(message => this.data = message);
+    this.premioAcumulado = this.game.getJackpot();
   }
 
   check(userAnswer: string):void {
