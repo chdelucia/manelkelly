@@ -1,6 +1,6 @@
 export interface Boda {
     id: number;
-    pregunta: string;
+    question: string;
     respuesta: string;
     img?: string;
     inicial: string;

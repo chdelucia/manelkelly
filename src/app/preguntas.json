@@ -1,7 +1,7 @@
 [
     {
         "id":0,
-        "pregunta":"",
+        "question":"",
         "respuesta":"pendejo",
         "img": "./assets/foto10.jpg",
         "inicial": "P",
@@ -11,7 +11,7 @@
     },
     {
         "id":1,
-        "pregunta":"",
+        "question":"",
         "respuesta":"cuadrado",
         "img": "./assets/foto4.jpg",
         "inicial": "C",
@@ -19,7 +19,7 @@
     },
     {
         "id":2,
-        "pregunta":"¿De que lugar se trata?",
+        "question":"¿De que lugar se trata?",
         "respuesta":"salou",
         "img": "./assets/foto5.jpg",
         "inicial": "S",
@@ -28,7 +28,7 @@
 
     {
         "id":3,
-        "pregunta":"",
+        "question":"",
         "respuesta":"juandi",
         "img": "./assets/homer.gif",
         "inicial": "J",
@@ -36,18 +36,18 @@
     },
     {
         "id":4,
-        "pregunta":"¿Cuantos goles marcaste esa temporada?",
+        "question":"¿Cuantos goles marcaste esa temporada?",
         "respuesta":"1995",
         "img": "./assets/foto12.jpeg",
         "inicial": "8",
         "success": false,
-        "error": "Era broma, la pregunta real es: ¿En que año este magnifico equipo prebenjamin se proclamó campeón?",
+        "error": "Era broma, la question real es: ¿En que año este magnifico equipo prebenjamin se proclamó campeón?",
         "goldem": true,
         "goldemInicial": "8"
     },
     {
         "id":5,
-        "pregunta":"Destino popular para luna de miel, según los expertos y Tripadvisor",
+        "question":"Destino popular para luna de miel, según los expertos y Tripadvisor",
         "respuesta":"kentucky",
         "inicial": "K",
         "success": false,
@@ -56,7 +56,7 @@
 
     {
         "id":6,
-        "pregunta":"Personaje de comic que comparte lugar de nacimiento con Kelly",
+        "question":"Personaje de comic que comparte lugar de nacimiento con Kelly",
         "respuesta":"asterix",
         "inicial": "A",
         "success": false,
@@ -64,7 +64,7 @@
     },
     {
         "id":7,
-        "pregunta":"¿Fecha de vuestra boda? DD/MM/AAAA",
+        "question":"¿Fecha de vuestra boda? DD/MM/AAAA",
         "respuesta":"04/07/2022",
         "img": "./assets/foto01.jfif",
         "inicial": "?",
@@ -75,7 +75,7 @@
     },
     {
         "id":8,
-        "pregunta":"¿Te suena la situación? ¿Que modelo es?",
+        "question":"¿Te suena la situación? ¿Que modelo es?",
         "respuesta":"602",
         "img": "./assets/206.jpeg",
         "inicial": "6",
@@ -84,7 +84,7 @@
     },
     {
         "id":9,
-        "pregunta":"¿Nombre de la perra?",
+        "question":"¿Nombre de la perra?",
         "respuesta":"Samantha",
         "img": "./assets/foto11.jpeg",
         "inicial": "U",
@@ -95,7 +95,7 @@
     },
     {
         "id":10,
-        "pregunta":"",
+        "question":"",
         "respuesta":"TALASOMA POWER",
         "img": "./assets/pez.jpeg",
         "inicial": "T",
@@ -104,7 +104,7 @@
     },
     {
         "id":11,
-        "pregunta":"¿Fecha de vuestra pedida? DD/MM/AAAA",
+        "question":"¿Fecha de vuestra pedida? DD/MM/AAAA",
         "respuesta":"20/04/2019",
         "img": "./assets/foto0.jpg",
         "inicial": "?",
@@ -116,7 +116,7 @@
     },
     {
         "id":12,
-        "pregunta":"",
+        "question":"",
         "respuesta":"caraculo mental",
         "img": "./assets/caraculo.jpg",
         "inicial": "C",
@@ -125,7 +125,7 @@
     },
     {
         "id":13,
-        "pregunta":"",
+        "question":"",
         "respuesta":"Ovella negra",
         "img": "./assets/ovella.jpeg",
         "inicial": "O",
@@ -134,7 +134,7 @@
     },
     {
         "id":14,
-        "pregunta":"",
+        "question":"",
         "respuesta":"Italia87",
         "img": "./assets/foto3.jpg",
         "inicial": "I",
@@ -143,7 +143,7 @@
     },
     {
         "id":15,
-        "pregunta":"Dia y Mes. ejemplo: 1 Enero",
+        "question":"Dia y Mes. ejemplo: 1 Enero",
         "respuesta":"15 Febrero",
         "inicial": "?",
         "success": false,
@@ -153,7 +153,7 @@
     },
     {
         "id":16,
-        "pregunta":"",
+        "question":"",
         "respuesta":"agua de valencia",
         "img": "./assets/agua.jpeg",
         "inicial": "A",
@@ -162,7 +162,7 @@
     },
     {
         "id":17,
-        "pregunta":"",
+        "question":"",
         "respuesta":"trompamono",
         "img": "./assets/tromapamono.webp",
         "inicial": "T",
@@ -171,7 +171,7 @@
     },
     {
         "id":18,
-        "pregunta":"¿Como se llama la discoteca?",
+        "question":"¿Como se llama la discoteca?",
         "respuesta":"eibino",
         "img": "./assets/eibino.png",
         "inicial": "E",
@@ -182,7 +182,7 @@
     },
     {
         "id":19,
-        "pregunta":"En tu costado lo encontrarás atrapado",
+        "question":"En tu costado lo encontrarás atrapado",
         "respuesta":"cautivo",
         "inicial": "C",
         "success": false,
