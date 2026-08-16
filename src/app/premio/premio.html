@@ -1,43 +1,36 @@
 <section>
-Has acertado un total de: {{ progress }} preguntas<br><br>
-
-
-
+    Has acertado un total de: {{ progress() }} preguntas<br><br>
 </section>
 
+@if (bonustrack) {
+    <section>
+        <h2>BONUS TRACK:</h2>
+        <img class="img-qa" src="./assets/orbe.png" alt="Orbe">
+    </section>
 
+    <section class="responder">
+        <input #answer (keyup.enter)="check(answer.value)">
+        <button type="button" (click)="check(answer.value)">Responder</button>
+    </section>
+}
 
-<section *ngIf="bonustrack">
-    <h2>BONUS TRACK:</h2>
-    <img class="img-qa" src="./assets/orbe.png">
-</section>  
+@if (extraPrize) {
+    <section>
+        <h2>La última letra del código secreto es:</h2>
+        <div class="circulos goldem">R</div>
 
-<section class="responder" *ngIf="bonustrack">
-    <input #answer
-    (keyup.enter)="check(answer.value)">
-   
-   <button type="button" (click)="check(answer.value)">Responder</button>
-</section>
+        <div>Felicidades estáis más cerca de llevaros:</div>
+        <h1 class="premiofinal">{{ totalPrize }} Eurazoss</h1>
+        <div>
+            <img src="./assets/celebracion2.gif" alt="Celebración">
+        </div>
+        <h3> Llama al siguiente número dando el código secreto: </h3>
+        <h2>+34 678 88 17 15</h2>
 
-<section *ngIf="extraPrize">
-    <h2>La última letra del código secreto es:</h2>
-    <div class="circulos goldem">R</div>
-
-    <div>Felicidades estais mas cerca de llevaros:</div> 
-    <h1 class="premiofinal">{{ totalPrize }} Eurazoss</h1>
-    <div>
-        <img src="./assets/celebracion2.gif">
-    </div>
-   <h3> Llama al siguiente número dando el código secreto: </h3>
-   <h2>+34 678 88 17 15</h2>
-
-   <div class="responder">
-        <p>¿Quieres verificar el código antes de llamar?</p>
-        <input #answer
-        (keyup.enter)="checkCode(answer.value)">
-    
-        <button type="button" (click)="checkCode(answer.value)">Verificar</button>
-   </div>
-</section>  
-
-
+        <div class="responder">
+            <p>¿Quieres verificar el código antes de llamar?</p>
+            <input #codeAnswer (keyup.enter)="checkCode(codeAnswer.value)">
+            <button type="button" (click)="checkCode(codeAnswer.value)">Verificar</button>
+        </div>
+    </section>
+}

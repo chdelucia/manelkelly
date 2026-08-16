@@ -1,146 +1,161 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject, signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
-
-import { environment } from 'src/environments/environment';
-import data from '../app/preguntas.json'; 
+import { environment } from '../environments/environment';
+import rawData from './preguntas.json';
 import { Boda } from './model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
-  private messageSource = new BehaviorSubject(data[0]);
-  currentMessage = this.messageSource.asObservable();
+  private router = inject(Router);
 
-  private paginatorIdSource = new BehaviorSubject(0);
-  currentPaginatorId = this.paginatorIdSource.asObservable();
+  readonly questions = signal<Boda[]>(JSON.parse(JSON.stringify(rawData)));
+  readonly currentQuestionID = signal<number>(0);
+  readonly correctAnswers = signal<number>(0);
 
-  private correctAnswerSource = new BehaviorSubject(0);
-  currentProgress = this.correctAnswerSource.asObservable();
-  
-  private correctAnswers = 0;
-  private totalQuestions = data.length;
-  private totalPrize = environment.totalPrize
-  private unitPrize = environment.totalPrize / this.totalQuestions;
-  private jackpot = 0;
-  private currentQuestionID = 0;
+  readonly totalQuestions = computed(() => this.questions().length);
+  readonly totalPrize = environment.totalPrize;
+  readonly unitPrize = computed(() => this.totalPrize / (this.totalQuestions() || 1));
 
-  constructor(private router: Router) { }
+  readonly jackpot = computed(() => {
+    if (this.correctAnswers() === this.totalQuestions() && this.totalQuestions() > 0) {
+      return this.totalPrize;
+    }
+    return Math.floor(this.unitPrize() * this.correctAnswers());
+  });
 
-  changeData(id: number = 0) {
-    this.messageSource.next(data[id]);
+  readonly currentQuestionObj = computed(() => {
+    const list = this.questions();
+    const id = this.currentQuestionID();
+    return list[id] || list[0];
+  });
+
+  constructor() {
+    this.loadDataFromLocalStorage();
   }
 
-  changePaginatorID(id: number) {
-    this.paginatorIdSource.next(id);
-  }
-
-  changeProgress() {
-    this.correctAnswerSource.next(this.correctAnswers);
-  }
-  
-  loadDataFromLocalStorage():void {
+  loadDataFromLocalStorage(): void {
+    if (typeof window === 'undefined' || !window.localStorage) {
+      return;
+    }
     const ans = localStorage.getItem(environment.LocalStorageAnswersName);
-    let answers = ans?.split(',') || [];
-    const isNotLoaded = answers.length !== this.correctAnswers;
+    if (!ans) return;
 
-    if( answers && isNotLoaded) {
+    const savedIds = new Set(ans.split(',').filter(Boolean).map(id => id.trim()));
+    let count = 0;
 
-      data.forEach( question => {
-        if( answers.includes(question.id.toString()) ) {
-          question.success = true;
-          this.correctAnswers++;
-        }
-      });
+    const updatedQuestions = this.questions().map(q => {
+      if (savedIds.has(q.id.toString())) {
+        count++;
+        return { ...q, success: true };
+      }
+      return q;
+    });
 
-      this.updateJackpot();
+    this.questions.set(updatedQuestions);
+    this.correctAnswers.set(count);
+
+    if (updatedQuestions[this.currentQuestionID()]?.success) {
+      const nextUnsolvedIndex = updatedQuestions.findIndex(q => !q.success);
+      if (nextUnsolvedIndex !== -1) {
+        this.currentQuestionID.set(nextUnsolvedIndex);
+      } else if (count === updatedQuestions.length) {
+        this.currentQuestionID.set(updatedQuestions.length - 1);
+      }
     }
   }
 
-  saveProgressIntoLocalStorage():void {
+  saveProgressIntoLocalStorage(questionId: number): void {
+    if (typeof window === 'undefined' || !window.localStorage) {
+      return;
+    }
     let ans = localStorage.getItem(environment.LocalStorageAnswersName);
-    ans = ans ? ans + ',' + this.currentQuestionID : this.currentQuestionID.toString();
-
-    localStorage.setItem(environment.LocalStorageAnswersName, ans );
+    const idStr = questionId.toString();
+    if (ans) {
+      const existing = ans.split(',');
+      if (!existing.includes(idStr)) {
+        ans = `${ans},${idStr}`;
+      }
+    } else {
+      ans = idStr;
+    }
+    localStorage.setItem(environment.LocalStorageAnswersName, ans);
   }
 
-
-  setQuestionID(id:number) {
-    this.currentQuestionID = id;
-    this.changeData(id);
-  }
-
-  getCurrentQuestionObj():Boda {
-    return data[this.currentQuestionID];
-  }
-
-  getProgress():number {
-    return this.correctAnswers;
-  }
-
-  updateProgress():void {
-    this.saveProgressIntoLocalStorage();
-    this.correctAnswers++;
-    this.currentQuestionID++;
-
-    if (this.correctAnswers === this.totalQuestions) { 
-      this.moveToCongratsPage() 
+  setQuestionID(id: number): void {
+    if (id >= 0 && id < this.questions().length) {
+      this.currentQuestionID.set(id);
     }
   }
 
-  getTotalQuestion():number {
-    return this.totalQuestions;
+  getCurrentQuestionObj(): Boda {
+    return this.currentQuestionObj();
   }
 
-  getTotalPrize():number {
+  getProgress(): number {
+    return this.correctAnswers();
+  }
+
+  getTotalQuestion(): number {
+    return this.totalQuestions();
+  }
+
+  getTotalPrize(): number {
     return this.totalPrize;
   }
 
-  getUnitPrize():number {
-    return this.unitPrize;
+  getUnitPrize(): number {
+    return this.unitPrize();
   }
 
-  getQuestions():Array<Boda> {
-    return data;
+  getQuestions(): Boda[] {
+    return this.questions();
   }
 
-  moveToCongratsPage():void {
+  getJackpot(): number {
+    return this.jackpot();
+  }
+
+  checkAnswer(userAnswer: string): boolean {
+    if (!userAnswer) return false;
+
+    const currentObj = this.currentQuestionObj();
+    const expected = currentObj.respuesta.trim().toLowerCase();
+    const actual = userAnswer.trim().toLowerCase();
+
+    if (actual === expected) {
+      const qId = currentObj.id;
+
+      const updatedList = this.questions().map(q =>
+        q.id === qId ? { ...q, success: true } : q
+      );
+      this.questions.set(updatedList);
+      this.saveProgressIntoLocalStorage(qId);
+
+      const newCorrectCount = updatedList.filter(q => q.success).length;
+      this.correctAnswers.set(newCorrectCount);
+
+      if (newCorrectCount === this.totalQuestions()) {
+        this.moveToCongratsPage();
+      } else {
+        let nextId = (this.currentQuestionID() + 1) % this.totalQuestions();
+        if (updatedList[nextId]?.success) {
+          const unsolvedIndex = updatedList.findIndex(q => !q.success);
+          if (unsolvedIndex !== -1) {
+            nextId = unsolvedIndex;
+          }
+        }
+        this.currentQuestionID.set(nextId);
+      }
+
+      return true;
+    }
+
+    return false;
+  }
+
+  moveToCongratsPage(): void {
     this.router.navigate(['/premio']);
   }
-
-  updateJackpot():void {
-    if(this.jackpot === environment.totalPrize){
-      return
-    }
-    this.jackpot = Math.floor(this.unitPrize * this.correctAnswers);
-    this.changeProgress();
-  }
-
-  getJackpot():number {
-    return this.jackpot;
-  }
-
-  checkAnswer(answer: string):boolean {
-    let response = false;
-    let currentQuestionObj = this.getCurrentQuestionObj();
-    let expectedAnswer = currentQuestionObj.respuesta.toLowerCase();
-
-    if(answer.toLowerCase() === expectedAnswer) {
-      this.setQuestionAsResolved(currentQuestionObj);
-      this.updateProgress();
-      this.updateJackpot();
-      this.changeData(this.currentQuestionID);
-      this.changePaginatorID(this.currentQuestionID);
-      
-      response = true;
-    } 
-
-    return response;
-  }
-
-  setQuestionAsResolved(currentQuestion: Boda):void {
-    currentQuestion.success = true;
-  }
-
 }
