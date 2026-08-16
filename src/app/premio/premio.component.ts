@@ -1,51 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-premio',
-  templateUrl: 'premio.html',
-  styleUrls: ['premio.less']
+  standalone: true,
+  templateUrl: './premio.html',
+  styleUrls: ['./premio.less']
 })
-export class PremioComponent implements OnInit {
-  progress = 0
-  totalPrize: number;
+export class PremioComponent {
+  private game = inject(GameService);
+
+  readonly progress = this.game.correctAnswers;
+  readonly totalPrize = this.game.getTotalPrize();
+
   bonustrack = true;
   extraPrize = false;
   secretCode = "P8QVYNER";
-  
-  constructor(
-    private game: GameService
-  ) {
-    this.totalPrize = this.game.getTotalPrize();
-  }
 
-  ngOnInit(): void {
-    this.progress = this.game.getProgress()
-  }
-
-  check(value:string){
-    if (value.toLowerCase() === "orbe") {
+  check(value: string): void {
+    if (value.trim().toLowerCase() === "orbe") {
       this.hideBonusTrackSection();
       this.showExtraPrize();
     } else {
-      alert('casiiii... empieza por la O y todos dicen que no existe.')
+      alert('casiiii... empieza por la O y todos dicen que no existe.');
     }
   }
 
-  checkCode(value: string) {
-    if(this.secretCode.toLowerCase() === value.toLowerCase()) {
+  checkCode(value: string): void {
+    if (this.secretCode.toLowerCase() === value.trim().toLowerCase()) {
       alert('Código correcto');
     } else {
       alert('Fijate bien en las bolas doradas');
     }
   }
 
-  hideBonusTrackSection() {
+  hideBonusTrackSection(): void {
     this.bonustrack = false;
   }
 
-  showExtraPrize() {
-    this.extraPrize= true;
+  showExtraPrize(): void {
+    this.extraPrize = true;
   }
-
 }

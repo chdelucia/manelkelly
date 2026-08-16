@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-intro',
-  templateUrl: 'intro.html',
-  styleUrls: ['intro.less']
+  standalone: true,
+  imports: [RouterLink],
+  templateUrl: './intro.html',
+  styleUrls: ['./intro.less']
 })
-export class IntroComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class IntroComponent {}

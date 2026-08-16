@@ -1,34 +1,19 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, inject } from '@angular/core';
 import { GameService } from '../game.service';
-import { Boda } from '../model';
 
 @Component({
   selector: 'app-pagination',
-  templateUrl: 'pagination.html',
-  styleUrls: ['pagination.less']
+  standalone: true,
+  templateUrl: './pagination.html',
+  styleUrls: ['./pagination.less']
 })
-export class PaginationComponent implements OnInit, OnDestroy {
-  datos: Array<Boda> = [];
-  indice: number = 0;
-  subscription: Subscription | undefined;
+export class PaginationComponent {
+  private game = inject(GameService);
 
-  constructor(private game: GameService) {
-    this.game.loadDataFromLocalStorage();
-    this.datos = this.game.getQuestions();
-   }
+  readonly datos = this.game.questions;
+  readonly indice = this.game.currentQuestionID;
 
-  changeQuestion(id: number) {
+  changeQuestion(id: number): void {
     this.game.setQuestionID(id);
-    this.indice = id;
   }
-
-  ngOnInit(): void {
-    this.subscription = this.game.currentPaginatorId.subscribe(id => this.indice = id);
-  }
-
-  ngOnDestroy() {
-    this.subscription?.unsubscribe();
-  }
-
 }

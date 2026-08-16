@@ -1,59 +1,42 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Boda } from '../model';
+import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { GameService } from '../game.service';
-import { Subscription } from 'rxjs';
+import { PaginationComponent } from '../pagination/pagination.component';
+import { InfoPanelComponent } from '../info-panel/info-panel.component';
 
 @Component({
   selector: 'app-concurso',
-  templateUrl: 'concurso.html',
-  styleUrls: ['concurso.less']
+  standalone: true,
+  imports: [FormsModule, PaginationComponent, InfoPanelComponent],
+  templateUrl: './concurso.html',
+  styleUrls: ['./concurso.less']
 })
-export class ConcursoComponent implements OnInit, OnDestroy {
+export class ConcursoComponent {
+  private game = inject(GameService);
 
   inputValue = '';
   title = 'Manel & kelly';
-  data: Boda;
   showInfoPanel = false;
 
-  constructor(private game: GameService) { 
-    this.data = this.game.getCurrentQuestionObj();
-  }
+  readonly data = this.game.currentQuestionObj;
+  readonly premioAcumulado = this.game.jackpot;
 
-  premioAcumulado: number = 0;
-  subscription: Subscription | undefined;
-  
-
-  ngOnInit():void {
-    this.subscription = this.game.currentMessage.subscribe(message => this.data = message);
-    this.premioAcumulado = this.game.getJackpot();
-  }
-
-  check(userAnswer: string):void {
-    let msg = this.data.error || "Intentalo de nuevo";
+  check(userAnswer: string): void {
+    let msg = this.data().error || "Intentalo de nuevo";
     
-    if(this.game.checkAnswer(userAnswer) ) {
-      this.correctAnswer();
+    if (this.game.checkAnswer(userAnswer)) {
       msg = 'Respuesta correcta!'; 
-    } 
+      this.clearInput();
+    }
 
-    alert(msg)
+    alert(msg);
   }
 
-  correctAnswer():void {
-    this.premioAcumulado = this.game.getJackpot()
-    this.clearInput();
+  toggleInfo(): void {
+    this.showInfoPanel = !this.showInfoPanel;
   }
 
-  toggleInfo():void {
-    this.showInfoPanel = !this.showInfoPanel
-  }
-
-  clearInput():void {
+  clearInput(): void {
     this.inputValue = '';
   }
-
-  ngOnDestroy() {
-    this.subscription?.unsubscribe();
-  }
-
 }
