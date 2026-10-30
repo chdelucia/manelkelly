@@ -1,8 +1,8 @@
 <section>
     <h3>Felicidades habéis resuelto el reto final.</h3>
     <h2>Elegid día para recoger la recompensa:</h2>
-    @for (date of dates; track $index) {
-        <div class="calendar" [class.selected]="selectedDay === date" (click)="selectDay(date)">
+    @for (date of dates(); track $index) {
+        <div class="calendar" [class.selected]="selectedDay() === date" (click)="selectDay(date)">
             <div class="day"> {{ date.weekday }}</div>
             <div class="number">{{ date.day }}</div>
             <div class="hour">19:30</div>
@@ -14,7 +14,7 @@
     2.2396368
     <br><br>
 
-    <a [href]="msg" target="_blank" class="button">
+    <a [href]="msg()" target="_blank" class="button">
         Confirmar día y hora
     </a>
     <img src="./assets/dinero.gif" alt="Recompensa">

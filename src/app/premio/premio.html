@@ -2,7 +2,7 @@
     Has acertado un total de: {{ progress() }} preguntas<br><br>
 </section>
 
-@if (bonustrack) {
+@if (bonustrack()) {
     <section>
         <h2>BONUS TRACK:</h2>
         <img class="img-qa" src="./assets/orbe.png" alt="Orbe">
@@ -14,7 +14,7 @@
     </section>
 }
 
-@if (extraPrize) {
+@if (extraPrize()) {
     <section>
         <h2>La última letra del código secreto es:</h2>
         <div class="circulos goldem">R</div>

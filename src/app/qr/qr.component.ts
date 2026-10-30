@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal, computed, ChangeDetectionStrategy } from '@angular/core';
 
-interface DateOption {
+export interface DateOption {
   weekday: string;
   day: string;
 }
@@ -8,13 +8,22 @@ interface DateOption {
 @Component({
   selector: 'app-qr',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './qr.html',
   styleUrls: ['./qr.less']
 })
 export class QrComponent implements OnInit {
-  dates: DateOption[] = [];
-  selectedDay: DateOption | null = null;
-  msg = '';
+  readonly dates = signal<DateOption[]>([]);
+  readonly selectedDay = signal<DateOption | null>(null);
+
+  readonly msg = computed(() => {
+    const day = this.selectedDay();
+    if (!day) return '';
+    const base = 'https://api.whatsapp.com/send?phone=+34600221298&text=';
+    const mgs2 = '🤣%20Parte%20final%20del%20reto🤣 ';
+    const data = `💸💸💸%20Nos%20vemos%20el%20*${day.weekday}*%20día%20*${day.day}*%20a%20las%20*19:30*%20💸💸💸`;
+    return base + mgs2 + data;
+  });
 
   ngOnInit(): void {
     this.setNextSevenDays();
@@ -22,6 +31,7 @@ export class QrComponent implements OnInit {
 
   setNextSevenDays(): void {
     const today = new Date();
+    const list: DateOption[] = [];
     for (let index = 0; index < 8; index++) {
       const day = new Date(today);
       day.setDate(today.getDate() + index + 1);
@@ -29,20 +39,12 @@ export class QrComponent implements OnInit {
         weekday: day.toLocaleDateString('es-ES', { weekday: 'long' }),
         day: day.toLocaleDateString('es-ES', { day: 'numeric' })
       };
-      this.dates.push(obj);
+      list.push(obj);
     }
+    this.dates.set(list);
   }
 
   selectDay(date: DateOption): void {
-    this.selectedDay = date;
-    this.setMsgWhatsapp();
-  }
-
-  setMsgWhatsapp(): void {
-    if (!this.selectedDay) return;
-    const msg = `https://api.whatsapp.com/send?phone=+34600221298&text=`;
-    const mgs2 = "🤣%20Parte%20final%20del%20reto🤣 ";
-    const data = `💸💸💸%20Nos%20vemos%20el%20*${this.selectedDay.weekday}*%20día%20*${this.selectedDay.day}*%20a%20las%20*19:30*%20💸💸💸`;
-    this.msg = msg + mgs2 + data;
+    this.selectedDay.set(date);
   }
 }
