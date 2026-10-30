@@ -8,7 +8,7 @@ import { Boda } from './model';
   providedIn: 'root'
 })
 export class GameService {
-  private router = inject(Router);
+  private readonly router = inject(Router);
 
   readonly questions = signal<Boda[]>(JSON.parse(JSON.stringify(rawData)));
   readonly currentQuestionID = signal<number>(0);

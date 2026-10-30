@@ -1,5 +1,5 @@
-<main style="text-align:center" class="content" (click)="showInfoPanel && toggleInfo()">
-    <h2 class="texto">{{ title }}!</h2>
+<main style="text-align:center" class="content" (click)="showInfoPanel() && toggleInfo()">
+    <h2 class="texto">{{ title() }}!</h2>
 
     <app-pagination></app-pagination>
 
@@ -13,13 +13,13 @@
     @if (!data().success) {
         <section class="responder">
             <input #answer
-                (keyup.enter)="check(answer.value)" [(ngModel)]="inputValue">
+                (keyup.enter)="check(answer.value)" [ngModel]="inputValue()" (ngModelChange)="inputValue.set($event)">
 
             <button type="button" (click)="check(answer.value)">Responder</button>
         </section>
     }
 
-    <app-info-panel [InfoPanel]="showInfoPanel"></app-info-panel>
+    <app-info-panel [InfoPanel]="showInfoPanel()"></app-info-panel>
 
 </main>
 

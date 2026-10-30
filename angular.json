@@ -10,7 +10,7 @@
           "inlineTemplate": true,
           "inlineStyle": true,
           "style": "less",
-          "skipTests": true,
+          "skipTests": false,
           "standalone": true
         },
         "@schematics/angular:application": {
@@ -90,6 +90,25 @@
           "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "manelkelly:build"
+          }
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "less",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.less"
+            ],
+            "scripts": [],
+            "karmaConfig": "karma.conf.js"
           }
         }
       }
